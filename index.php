@@ -5,7 +5,9 @@
         <div class="panel">
             <div class="control-group append-button"></div>
             <div class="control all-100">
+ 	      <form method="get" action="<?php echo esc_url(home_url('/')); ?>">
                 <input type="text" name="s" placeholder="Search news...">
+	      </form>
             </div>
         </div>
     </div>
@@ -15,91 +17,22 @@
 
 
     <div class="panel">
-
+	<h2>Recent News</h2>
         <div id="car1" class="ink-carousel" data-space-after-last-slide="false" data-autoload="false">
-
             <ul class="stage column-group half-gutters">
-
+	     <?php while(have_posts()) : the_post(); ?>	
                 <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/sports/1">
+		  <?php the_post_thumbnail('news-thumb', array(
+			
+			'class' => 'half-bottom-space')); ?> 
                     <div class="description">
-                        <h4 class="no-margin">Highlight Title</h4>
-                        <h5 class="slab">Baby Doe</h5>
-                        <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
+                        <h4 class="no-margin"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></h4>
+                        <h5 class="slab"><?php the_time('F j, Y g:i a'); ?></h5>
+		      <div class="excerpt"><?php the_excerpt(); ?></div>
                     </div>
                 </li>
+	     <?php endwhile; ?>
 
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/sports/2">
-                    <div class="description">
-                        <h4 class="no-margin">Highlight Title</h4>
-                        <h5 class="slab">Baby Doe</h5>
-                        <p>Devemos cultivar os nossos soft powers sagrados</p>
-                    </div>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/sports/3">
-                    <div class="description">
-                        <h4 class="no-margin">Highlight Title</h4>
-                        <h5 class="slab">Baby Doe</h5>
-                        <p>Rumo ao inconseguimento de cenas</p>
-                    </div>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/sports/4">
-                    <div class="description">
-                        <h4 class="no-margin">Highlight Title</h4>
-                        <h5 class="slab">Baby Doe</h5>
-                        <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                    </div>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/sports/5">
-                    <div class="description">
-                        <h4 class="no-margin">Highlight Title</h4>
-                        <h5 class="slab">Baby Doe</h5>
-                        <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                    </div>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/sports/6">
-                    <div class="description">
-                        <h4 class="no-margin">Highlight Title</h4>
-                        <h5 class="slab">Baby Doe</h5>
-                        <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                    </div>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/sports/7">
-                    <div class="description">
-                        <h4 class="no-margin">Highlight Title</h4>
-                        <h5 class="slab">Baby Doe</h5>
-                        <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                    </div>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/sports/8">
-                    <div class="description">
-                        <h4 class="no-margin">Highlight Title</h4>
-                        <h5 class="slab">Baby Doe</h5>
-                        <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                    </div>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/sports/9">
-                    <div class="description">
-                        <h4 class="no-margin">Highlight Title</h4>
-                        <h5 class="slab">Baby Doe</h5>
-                        <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                    </div>
-                </li>
             </ul>
 
         </div>
@@ -111,6 +44,12 @@
 
     </div>
 
+    <!--<script>
+      Ink.requireModules(['Ink.UI.Carousel_1'], function(InkCarousel) {
+	new InkCarousel('#car1', {pagination: '#p1'});
+      });
+    </script>-->
+
     <div class="panel ink-grid">
         <div class="column-group">
             <div class="all-50">
@@ -119,63 +58,16 @@
         <div id="car3" class="ink-carousel" data-autoload="false">
 
             <ul class="stage column-group half-gutters unstyled">
-
+		<?php $featured_query = new WP_Query(array('category_name' => 'featured')); ?>
+		<?php while($featured_query->have_posts()) : $featured_query->the_post(); ?>
                 <li class="slide xlarge-100 large-100 medium-100 small-100 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/1400/675/nightlife/1">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impactoagilidade decisória.</p>
+		  <?php the_post_thumbnail('news-large', array(
+			'class' => 'half-bottom-space')); ?> 
+                    <h4 class="no-margin"><a href="<?php the_permalink(); ?>"<?php the_title(); ?></a></h4>
+                    <h5 class="slab"><?php the_time('F j, Y g:i a'); ?></h5>
+		    <p><?php the_excerpt(); ?></p>
                 </li>
-
-                <li class="slide xlarge-100 large-100 medium-100 small-100 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/1400/675/nightlife/2">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>Devemos cultivar os nossos soft powers sagrados</p>
-                </li>
-
-                <li class="slide xlarge-100 large-100 medium-100 small-100 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/1400/675/nightlife/3">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>Rumo ao inconseguimento de cenas</p>
-                </li>
-
-                <li class="slide xlarge-100 large-100 medium-100 small-100 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/1400/675/nightlife/4">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                </li>
-
-                <li class="slide xlarge-100 large-100 medium-100 small-100 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/1400/675/nightlife/5">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                </li>
-
-                <li class="slide xlarge-100 large-100 medium-100 small-100 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/1400/675/nightlife/6">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                </li>
-
-                <li class="slide xlarge-100 large-100 medium-100 small-100 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/1400/675/nightlife/7">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                </li>
-
-                <li class="slide xlarge-100 large-100 medium-100 small-100 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/1400/675/nightlife/8">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                </li>
-            </ul>
+		<?php endwhile; ?>
 
 
             <nav id="p3" class="ink-navigation" data-previous-label="" data-next-label="">
@@ -194,19 +86,24 @@
             <div class="all-50">
                 <h2>Popular</h2>
                 <ul class="unstyled">
+		<?php 
+		   $args = array(
+			'orderby'         => 'comment_count',
+			'posts_per_page'  => '3'
+		   );
+		?>
+		
+		<?php $popular_query = new WP_Query($args); ?>
+	  	<?php while($popular_query->have_posts()) : $popular_query->the_post(); ?>	
                         <li class="column-group half-gutters">
-                            <div class="all-40 small-50 tiny-50"><img src="holder.js/640x380/auto/ink" alt=""></div>
-                            <div class="all-60 small-50 tiny-50"><p>"Where's them crabs, Hoo-Hoo?" Edwin demanded. "Granser's set upon  having a snack."</p></div>
+                            <div class="all-40 small-50 tiny-50">
+			      <?php the_post_thumbnail('news-popular'); ?>
+                            <div class="all-60 small-50 tiny-50">
+				<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a><?php comments_number('No Responses','1 Response','% Responses'); ?></h4>
+				<?php the_excerpt(); ?>
                         </li>
-                        <li class="column-group half-gutters">
-                            <div class="all-40 small-50 tiny-50"><img src="holder.js/640x380/auto/ink" alt=""></div>
-                            <div class="all-60 small-50 tiny-50"><p>"Where's them crabs, Hoo-Hoo?" Edwin demanded. "Granser's set upon  having a snack."</p></div>
-                        </li>
-                        <li class="column-group half-gutters">
-                            <div class="all-40 small-50 tiny-50"><img src="holder.js/640x380/auto/ink" alt=""></div>
-                            <div class="all-60 small-50 tiny-50"><p>"Where's them crabs, Hoo-Hoo?" Edwin demanded. "Granser's set upon  having a snack."</p></div>
-                        </li>
-                    </ul>
+		<?php endwhile; ?>
+              	 </ul>
             </div>
         </div>
     </div>
@@ -221,66 +118,20 @@
 
 
     <div class="panel vertical-space">
+	<h2>New In Business</h2>
 
         <div id="car2" class="ink-carousel" data-autoload="false">
 
             <ul class="stage column-group half-gutters unstyled">
-
+		<?php $business_query = new WP_Query(array('category_name' => 'business')); ?>
+		<?php while($business_query->have_posts()) : $business_query->the_post(); ?>
                 <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/city/1">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impactoagilidade decisória.</p>
+		<?php the_post_thumbnail('news-thumb', array('class' => 'half-bottom-space')); ?>
+                    <h4 class="no-margin"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                    <h5 class="slab"><?php the_time('F j, Y g:i a'); ?></h5>
+			<?php the_excerpt(); ?>
                 </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/city/2">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>Devemos cultivar os nossos soft powers sagrados</p>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/city/3">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>Rumo ao inconseguimento de cenas</p>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/city/4">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/city/5">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/city/6">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/city/7">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                </li>
-
-                <li class="slide xlarge-25 large-25 medium-33 small-50 tiny-100">
-                    <img class="half-bottom-space" src="http://lorempixel.com/400/200/city/8">
-                    <h4 class="no-margin">Highlight Title</h4>
-                    <h5 class="slab">Baby Doe</h5>
-                    <p>É importante questionar o quanto a constante divulgação das informações ainda não demonstrou convincentemente que vai participar na mudança do impacto na agilidade decisória.</p>
-                </li>
+		<?php endwhile; ?>
             </ul>
 
             <nav id="p2" class="ink-navigation" data-next-label="" data-previous-label="">

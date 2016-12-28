@@ -7,3 +7,28 @@
  * 
  */
 
+.meta {
+   background:#333;
+   color:#fff;
+   padding:5px;
+   border-bottom: 3px #666 solid;
+}
+
+.post-thumbnail img {
+   width:100%;
+   height:auto;
+}
+
+.sidebar {
+   padding-left:25px;
+}
+
+.sidebar li {
+   list-style: none;
+   line-height: 2.2em;
+   border-bottom: 1px dotted #ccc;
+}
+
+.side-widget {
+   margin-bottom:25px;
+}

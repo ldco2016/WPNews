@@ -24,7 +24,7 @@
         <!-- load Ink's css from the cdn -->
         <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/ink-flex.min.css">
         <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.1.10/css/font-awesome.min.css">
-	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri().'/style.css'; ?>">
         
 
         <!-- load Ink's javascript files from the cdn -->
